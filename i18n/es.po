@@ -1,0 +1,27 @@
+#: init/octopus.js
+msgid "Project not found"
+msgstr "Proyecto no encontrado"
+
+#: public/form/octopus-form.js
+msgid "API Key"
+msgstr "Clave API"
+
+#: public/form/octopus-form.js
+msgid "Octopus URL"
+msgstr "Octopus URL"
+
+#: public/form/octopus-form.js
+msgid "Project Name"
+msgstr "Nombre del Proyecto"
+
+#: public/form/octopus-form.js
+msgid "Environment Name"
+msgstr "Nombre del Entorno"
+
+#: public/form/octopus-form.js
+msgid "Create Release"
+msgstr "Crear Release"
+
+#: public/form/octopus-form.js
+msgid "Release ID"
+msgstr "Release ID"
