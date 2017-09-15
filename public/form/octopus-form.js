@@ -18,20 +18,20 @@
 
     var projectName = Cla.ui.textField({
         name: 'project',
-        fieldLabel: _('Project Name'),
+        fieldLabel: _('Octopus Project Name'),
         value: data.project || '',
         allowBlank: false,
     }); 
 
     var environmentName = Cla.ui.textField({
         name: 'environment',
-        fieldLabel: _('Environment Name'),
+        fieldLabel: _('Octopus Environment Name'),
         value: data.environment || '',
         allowBlank: false,
     }); 
 
     var createRelease = Cla.ui.checkBox({
-        fieldLabel: _('Create Release'),
+        fieldLabel: _('Create Release in Octopus'),
         name: 'checkboxRelease',
         checked: data.checkboxRelease == 1 ? true : false
     });

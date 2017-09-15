@@ -4,23 +4,23 @@ msgstr "Proyecto no encontrado"
 
 #: public/form/octopus-form.js
 msgid "API Key"
-msgstr "Clave API"
+msgstr "API Key"
 
 #: public/form/octopus-form.js
 msgid "Octopus URL"
 msgstr "Octopus URL"
 
 #: public/form/octopus-form.js
-msgid "Project Name"
-msgstr "Nombre del Proyecto"
+msgid "Octopus Project Name"
+msgstr "Nombre del Proyecto en Octopus"
 
 #: public/form/octopus-form.js
-msgid "Environment Name"
-msgstr "Nombre del Entorno"
+msgid "Octopus Environment Name"
+msgstr "Nombre del entorno en Octopus"
 
 #: public/form/octopus-form.js
-msgid "Create Release"
-msgstr "Crear Release"
+msgid "Create Release in Octopus"
+msgstr "Crear Release en Octopus"
 
 #: public/form/octopus-form.js
 msgid "Release ID"

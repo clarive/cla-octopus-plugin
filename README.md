@@ -22,9 +22,9 @@ The main fields are:
 
 - **API Key** - API key for interaction with Octopus.
 - **Octopus URL** - Octopus URL. 
-- **Project Name** - Project Name to deploy to in Octopus.
-- **Environment Name** - Environment Name to deploy to in Octopus.
-- **Create Release** - Check to create a new release.
+- **Octopus Project Name** - Project Name to deploy to in Octopus.
+- **Octopus Environment Name** - Environment Name to deploy to in Octopus.
+- **Create Release in Octopus** - Check to create a new release.
 - **Release ID** - When `Create Release` is not selected, indicate the Octopus Release ID to deploy to.
 
 Configuration example:
