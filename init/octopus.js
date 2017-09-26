@@ -17,6 +17,7 @@ reg.register('service.octopus.task', {
         var environmentName = params.environment || '';
         var checkboxRelease = params.checkboxRelease || true;
         var idRelease = params.idRelease || '';
+        var version = params.version || '';
         var contentDeploy = {};
         var agent = web.agent({
             auto_parse: 0
@@ -43,9 +44,12 @@ reg.register('service.octopus.task', {
                 var content = JSON.parse(response.content);
 
                 var selectedPackages = myutils.buildSelectedPackages(agent, headers, octopusUrl, content.Packages);
+                if (!version) {
+                    version = content.NextVersionIncrement;
+                }
                 var contentRelease = {
                     'ProjectId': projectId,
-                    'Version': content.NextVersionIncrement,
+                    'Version': version,
                     'SelectedPackages': selectedPackages
                 };
                 response = myutils.post(agent, headers, urlReleases, contentRelease);

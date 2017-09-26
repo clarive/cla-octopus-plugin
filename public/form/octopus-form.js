@@ -14,21 +14,21 @@
         fieldLabel: _('Octopus URL'),
         value: data.url || '',
         allowBlank: false,
-    }); 
+    });
 
     var projectName = Cla.ui.textField({
         name: 'project',
         fieldLabel: _('Octopus Project Name'),
         value: data.project || '',
         allowBlank: false,
-    }); 
+    });
 
     var environmentName = Cla.ui.textField({
         name: 'environment',
         fieldLabel: _('Octopus Environment Name'),
         value: data.environment || '',
         allowBlank: false,
-    }); 
+    });
 
     var createRelease = Cla.ui.checkBox({
         fieldLabel: _('Create Release in Octopus'),
@@ -39,8 +39,10 @@
         var checked = createRelease.checked;
         if (checked) {
             idRelease.hide();
+            version.show();
         } else {
             idRelease.show();
+            version.hide();
         }
     });
     var idRelease = Cla.ui.textField({
@@ -48,6 +50,13 @@
         name: 'idRelease',
         value: data.idRelease || '',
         hidden: data.checkboxRelease == true ? true : false
+    });
+
+    var version = Cla.ui.textField({
+        name: 'version',
+        fieldLabel: _('Release version'),
+        value: data.version || '',
+        hidden: data.checkboxRelease == true ? false : true
     });
 
     var errors = Cla.ui.errorManagementBox({
@@ -71,6 +80,7 @@
             environmentName,
             createRelease,
             idRelease,
+            version,
             errors
         ]
     });
