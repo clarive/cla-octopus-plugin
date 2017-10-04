@@ -59,7 +59,7 @@ exports.buildSelectedPackages = function(agent, headers, octopusUrl, packageRele
 function getVersion(allPackages, packageId) {
     var items = allPackages.Items;
     for (var i = 0; i < items.length; i++) {
-        if (items[i].Title == packageId) {
+        if (items[i].PackageId == packageId) {
             return items[i].Version;
         }
     }

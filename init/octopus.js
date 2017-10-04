@@ -9,6 +9,7 @@ reg.register('service.octopus.task', {
         var log = require('cla/log');
         var reg = require('cla/reg');
         var web = require("cla/web");
+        var util = require("cla/util");
         var myutils = require("myutils");
         var octopusServer = params.server;
         var apiKey = params.apikey || '';
@@ -60,10 +61,28 @@ reg.register('service.octopus.task', {
                     'EnvironmentID': environmentId
                 };
                 response = myutils.post(agent, headers, urlDeployments, contentDeploy);
+                var content = JSON.parse(response.content);
+                var taskID = content.TaskId;
+                var RESTQuery = octopusUrl + '/api/tasks/' + taskID;
+                response = agent.get(RESTQuery,{
+                    headers: headers
+                });
+                content = JSON.parse(response.content);
+                while(content['IsCompleted'] == false){
+                    util.sleep(5);
+                    response = agent.get(RESTQuery,{
+                        headers: headers
+                    });
+                    content = JSON.parse(response.content);
+                    log.info("Waiting for completing task...");
+                }
                 ctx.stash('_returned_octopus_response', response);
+                if(content.State == 'Failed'){
+                    log.fatal(content.ErrorMessage);
+                }
                 log.info("Deployment successful", response);
             } else {
-                log.error(_("Project not found"));
+                log.fatal(_("Project not found"));
             }
         } else {
             contentDeploy = {
@@ -71,8 +90,30 @@ reg.register('service.octopus.task', {
                 'EnvironmentID': environmentId
             };
             response = myutils.post(agent, headers, urlDeployments, contentDeploy);
-            ctx.stash('_returned_octopus_response', response);
-            log.info("Deployment successful", response);
+           
+                var content = JSON.parse(response.content);
+                var taskID = content.TaskId;
+                var RESTQuery = octopusUrl + '/api/tasks/' + taskID;
+                response = agent.get(RESTQuery,{
+                    headers: headers
+                });
+                content = JSON.parse(response.content);
+                while(content['IsCompleted'] == false){
+                    util.sleep(5);
+                    response = agent.get(RESTQuery,{
+                        headers: headers
+                    });
+                    content = JSON.parse(response.content);
+                    log.info("Waiting for completing task...");
+                }
+                ctx.stash('_returned_octopus_response', response);
+                if(content.State == 'Failed'){
+                    log.fatal(content.ErrorMessage);
+                }
+
+ 
+                log.info("Deployment successful", response);
+
         }
     }
 });
