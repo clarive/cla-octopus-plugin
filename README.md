@@ -26,6 +26,7 @@ The main fields are:
 - **Octopus Environment Name** - Environment Name to deploy to in Octopus.
 - **Create Release in Octopus** - Check to create a new release.
 - **Release ID** - When `Create Release` is not selected, indicate the Octopus Release ID to deploy to.
+- **Release version** - Select the version for the new release.
 
 Configuration example:
 
@@ -33,6 +34,7 @@ Configuration example:
     Octopus URL: http://octopus.machine
     Project Name: MyProject
     Environment Name: MyEnvironment
+    Release version: 1.0.3-dev
 
 - **Errors and Output** - These two fields are related to manage control errors. Options are:
    - **Fail and Output Error** - Search for configurated error pattern in script output. If found, an error message is displayed in the monitor showing the match.

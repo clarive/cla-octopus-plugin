@@ -61,26 +61,12 @@ reg.register('service.octopus.task', {
                     'EnvironmentID': environmentId
                 };
                 response = myutils.post(agent, headers, urlDeployments, contentDeploy);
-                var content = JSON.parse(response.content);
-                var taskID = content.TaskId;
-                var RESTQuery = octopusUrl + '/api/tasks/' + taskID;
-                response = agent.get(RESTQuery,{
-                    headers: headers
-                });
-                content = JSON.parse(response.content);
-                while(content['IsCompleted'] == false){
-                    util.sleep(5);
-                    response = agent.get(RESTQuery,{
-                        headers: headers
-                    });
-                    content = JSON.parse(response.content);
-                    log.info("Waiting for completing task...");
-                }
-                ctx.stash('_returned_octopus_response', response);
-                if(content.State == 'Failed'){
+                content = myutils.waitToFinishDeploy(agent, response, octopusUrl, headers);
+
+                if (content.State == 'Failed') {
                     log.fatal(content.ErrorMessage);
                 }
-                log.info("Deployment successful", response);
+                log.info(_("Deployment successful"));
             } else {
                 log.fatal(_("Project not found"));
             }
@@ -90,30 +76,11 @@ reg.register('service.octopus.task', {
                 'EnvironmentID': environmentId
             };
             response = myutils.post(agent, headers, urlDeployments, contentDeploy);
-           
-                var content = JSON.parse(response.content);
-                var taskID = content.TaskId;
-                var RESTQuery = octopusUrl + '/api/tasks/' + taskID;
-                response = agent.get(RESTQuery,{
-                    headers: headers
-                });
-                content = JSON.parse(response.content);
-                while(content['IsCompleted'] == false){
-                    util.sleep(5);
-                    response = agent.get(RESTQuery,{
-                        headers: headers
-                    });
-                    content = JSON.parse(response.content);
-                    log.info("Waiting for completing task...");
-                }
-                ctx.stash('_returned_octopus_response', response);
-                if(content.State == 'Failed'){
-                    log.fatal(content.ErrorMessage);
-                }
-
- 
-                log.info("Deployment successful", response);
-
+            content = myutils.waitToFinishDeploy(agent, response, octopusUrl, headers);
+            if (content.State == 'Failed') {
+                log.fatal(content.ErrorMessage);
+            }
+            log.info(_("Deployment successful"));
         }
     }
 });

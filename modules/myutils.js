@@ -64,3 +64,26 @@ function getVersion(allPackages, packageId) {
         }
     }
 };
+
+exports.waitToFinishDeploy = function(agent, response, octopusUrl, headers) {
+    var util = require("cla/util");
+    var log = require('cla/log');
+    var content = JSON.parse(response.content);
+    var taskID = content.TaskId;
+    var RESTQuery = octopusUrl + '/api/tasks/' + taskID;
+    response = agent.get(RESTQuery, {
+        headers: headers
+    });
+    content = JSON.parse(response.content);
+    while (content['IsCompleted'] == false) {
+        util.sleep(5);
+        response = agent.get(RESTQuery, {
+            headers: headers
+        });
+        content = JSON.parse(response.content);
+        log.info(_("Waiting for completing task..."));
+
+    }
+    ctx.stash('_returned_octopus_response', response);
+    return content;
+};

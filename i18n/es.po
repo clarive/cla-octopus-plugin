@@ -1,6 +1,14 @@
 #: init/octopus.js
+msgid "Deployment successful"
+msgstr "Despliegue correctamente"
+
+#: init/octopus.js
 msgid "Project not found"
 msgstr "Proyecto no encontrado"
+
+#: modules/myutils.js
+msgid "Waiting for completing task..."
+msgstr "Esperando a completar la tarea..."
 
 #: public/form/octopus-form.js
 msgid "API Key"
@@ -16,12 +24,17 @@ msgstr "Nombre del Proyecto en Octopus"
 
 #: public/form/octopus-form.js
 msgid "Octopus Environment Name"
-msgstr "Nombre del entorno en Octopus"
+msgstr "Nombre del Entorno en Octopus"
 
 #: public/form/octopus-form.js
 msgid "Create Release in Octopus"
-msgstr "Crear Release en Octopus"
+msgstr "Crear Release in Octopus"
 
 #: public/form/octopus-form.js
 msgid "Release ID"
 msgstr "Release ID"
+
+#: public/form/octopus-form.js
+msgid "Release version"
+msgstr "Versión de la Release"
+
