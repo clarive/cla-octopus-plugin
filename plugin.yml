@@ -1,0 +1,9 @@
+name: Clarive Octopus Plugin
+description: The Octopus plugin will allow you to perform deployments with Octopus.
+version: 1.0
+icon: https://github.com/clarive/cla-octopus-plugin/public/icon/octopus.svg
+url: https://github.com/clarive/cla-octopus-plugin
+requires:
+  - clarive_version: 6.8 <= version
+dependencies:
+  - cla-octopus-plugin
