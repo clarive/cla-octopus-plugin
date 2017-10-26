@@ -61,7 +61,7 @@ reg.register('service.octopus.task', {
                     'EnvironmentID': environmentId
                 };
                 response = myutils.post(agent, headers, urlDeployments, contentDeploy);
-                content = myutils.waitToFinishDeploy(agent, response, octopusUrl, headers);
+                content = myutils.waitToFinishDeploy(ctx, agent, response, octopusUrl, headers);
 
                 if (content.State == 'Failed') {
                     log.fatal(content.ErrorMessage);
@@ -76,7 +76,7 @@ reg.register('service.octopus.task', {
                 'EnvironmentID': environmentId
             };
             response = myutils.post(agent, headers, urlDeployments, contentDeploy);
-            content = myutils.waitToFinishDeploy(agent, response, octopusUrl, headers);
+            content = myutils.waitToFinishDeploy(ctx, agent, response, octopusUrl, headers);
             if (content.State == 'Failed') {
                 log.fatal(content.ErrorMessage);
             }

@@ -65,7 +65,7 @@ function getVersion(allPackages, packageId) {
     }
 };
 
-exports.waitToFinishDeploy = function(agent, response, octopusUrl, headers) {
+exports.waitToFinishDeploy = function(ctx, agent, response, octopusUrl, headers) {
     var util = require("cla/util");
     var log = require('cla/log');
     var content = JSON.parse(response.content);
