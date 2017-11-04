@@ -4,14 +4,44 @@ reg.register('service.octopus.task', {
     name: 'Octopus Deployment',
     icon: '/plugin/cla-octopus-plugin/icon/octopus.svg',
     form: '/plugin/cla-octopus-plugin/form/octopus-form.js',
+    rulebook: {
+        moniker: 'octopus_deploy',
+        description: _('Perform deployments with Octopus'),
+        required: ['api_key', 'url', 'project', 'environment', 'release'],
+        allow: ['api_key', 'url', 'project', 'environment', 'release', 'id_release',
+        'version'],
+        mapper: {
+            'api_key': 'apikey',
+            'release': 'checkboxRelease',
+            'id_release': 'idRelease'
+        },
+        examples: [{
+            octopus_deploy: {
+                api_key: 'API-392839302',
+                url: 'http://octopus.machine',
+                project: "MyProject",
+                environment: "MyEnvironment",
+                release: "0",
+                version: "1.0.3-dev"
+            }
+        },{
+            octopus_deploy: {
+                api_key: 'API-392839302',
+                url: 'http://octopus.machine',
+                project: "MyProject",
+                environment: "MyEnvironment",
+                release: "1",
+                id_release: "102391"
+            }
+        }]
+    },
     handler: function(ctx, params) {
-        var ci = require("cla/ci");
+
         var log = require('cla/log');
         var reg = require('cla/reg');
         var web = require("cla/web");
         var util = require("cla/util");
         var myutils = require("myutils");
-        var octopusServer = params.server;
         var apiKey = params.apikey || '';
         var octopusUrl = params.url || '';
         var projectName = params.project || '';

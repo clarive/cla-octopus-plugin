@@ -59,18 +59,6 @@
         hidden: data.checkboxRelease == true ? false : true
     });
 
-    var errors = Cla.ui.errorManagementBox({
-        errorTypeName: 'type',
-        errorTypeValue: params.data.type || 'warn',
-        rcOkName: 'ok',
-        rcOkValue: params.data.ok,
-        rcWarnName: 'warn',
-        rcWarnValue: params.data.warn,
-        rcErrorName: 'error',
-        rcErrorValue: params.data.error,
-        errorTabsValue: params.data
-    });
-
     var panel = Cla.ui.panel({
         layout: 'form',
         items: [
@@ -80,8 +68,7 @@
             environmentName,
             createRelease,
             idRelease,
-            version,
-            errors
+            version
         ]
     });
 
