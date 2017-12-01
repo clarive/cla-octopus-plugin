@@ -58,8 +58,9 @@ exports.buildSelectedPackages = function(agent, headers, octopusUrl, packageRele
 
 function getVersion(allPackages, packageId) {
     var items = allPackages.Items;
+    var regex = new RegExp(packageId, 'i');
     for (var i = 0; i < items.length; i++) {
-        if (items[i].PackageId == packageId) {
+        if (regex.exec(items[i].PackageId)) {
             return items[i].Version;
         }
     }
