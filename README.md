@@ -1,6 +1,6 @@
 # Octopus Plugin
 
-<img src="https://cdn.rawgit.com/clarive/cla-octopus-plugin/master/public/icon/octopus.svg?sanitize=true" alt="Octopus Plugin" title="Octopus Plugin" width="120" height="120">
+<img src="https://cdn.jsdelivr.net/gh/clarive/cla-octopus-plugin/public/icon/octopus.svg?sanitize=true" alt="Octopus Plugin" title="Octopus Plugin" width="120" height="120">
 
 The Octopus plugin will allow you to perform deployments with Octopus.
 
